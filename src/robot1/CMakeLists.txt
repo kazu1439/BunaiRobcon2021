@@ -8,7 +8,9 @@ project(robot1)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  geometry_msgs
+  roscpp
+  rospy
+  std_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -119,9 +121,9 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/robot1.cpp
-# )
+add_library(${PROJECT_NAME}
+  src/lib/differential.cpp
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -202,3 +204,8 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+include_directories(include ${catkin_INCLUDE_DIRS})
+
+add_executable(rob1_joy src/rob1_joy.cpp)
+target_link_libraries(rob1_joy ${catkin_LIBRARIES})

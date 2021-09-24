@@ -1,0 +1,55 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/roblab/BunaiRobcon2021/build/robot2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_68bb6/fast"
+/usr/bin/make -f CMakeFiles/cmTC_68bb6.dir/build.make CMakeFiles/cmTC_68bb6.dir/build
+make[1]: ディレクトリ '/home/roblab/BunaiRobcon2021/build/robot2/CMakeFiles/CMakeTmp' に入ります
+Building C object CMakeFiles/cmTC_68bb6.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_68bb6.dir/CheckSymbolExists.c.o   -c /home/roblab/BunaiRobcon2021/build/robot2/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_68bb6
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_68bb6.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_68bb6.dir/CheckSymbolExists.c.o  -o cmTC_68bb6 
+CMakeFiles/cmTC_68bb6.dir/CheckSymbolExists.c.o: 関数 `main' 内:
+CheckSymbolExists.c:(.text+0x1b): `pthread_create' に対する定義されていない参照です
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_68bb6.dir/build.make:97: recipe for target 'cmTC_68bb6' failed
+make[1]: *** [cmTC_68bb6] Error 1
+make[1]: ディレクトリ '/home/roblab/BunaiRobcon2021/build/robot2/CMakeFiles/CMakeTmp' から出ます
+Makefile:126: recipe for target 'cmTC_68bb6/fast' failed
+make: *** [cmTC_68bb6/fast] Error 2
+
+File /home/roblab/BunaiRobcon2021/build/robot2/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/roblab/BunaiRobcon2021/build/robot2/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_daaf7/fast"
+/usr/bin/make -f CMakeFiles/cmTC_daaf7.dir/build.make CMakeFiles/cmTC_daaf7.dir/build
+make[1]: ディレクトリ '/home/roblab/BunaiRobcon2021/build/robot2/CMakeFiles/CMakeTmp' に入ります
+Building C object CMakeFiles/cmTC_daaf7.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_daaf7.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_daaf7
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_daaf7.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_daaf7.dir/CheckFunctionExists.c.o  -o cmTC_daaf7 -lpthreads 
+/usr/bin/ld: -lpthreads が見つかりません
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_daaf7.dir/build.make:97: recipe for target 'cmTC_daaf7' failed
+make[1]: *** [cmTC_daaf7] Error 1
+make[1]: ディレクトリ '/home/roblab/BunaiRobcon2021/build/robot2/CMakeFiles/CMakeTmp' から出ます
+Makefile:126: recipe for target 'cmTC_daaf7/fast' failed
+make: *** [cmTC_daaf7/fast] Error 2
+
+

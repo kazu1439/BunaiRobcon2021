@@ -1,0 +1,13 @@
+[35m[1mScanning dependencies of target rob1_joy[0m
+[ 50%] Built target robot1
+[ 75%] [32mBuilding CXX object CMakeFiles/rob1_joy.dir/src/rob1_joy.cpp.o[0m
+[01m[K/home/roblab/BunaiRobcon2021/src/robot1/src/rob1_joy.cpp:117:1:[m[K [01;35m[Kwarning: [m[Kmissing terminating " character
+ [01;35m[K"[m[K
+ [01;35m[K^[m[K
+[01m[K/home/roblab/BunaiRobcon2021/src/robot1/src/rob1_joy.cpp:117:1:[m[K [01;31m[Kerror: [m[Kmissing terminating " character
+CMakeFiles/rob1_joy.dir/build.make:62: recipe for target 'CMakeFiles/rob1_joy.dir/src/rob1_joy.cpp.o' failed
+make[2]: *** [CMakeFiles/rob1_joy.dir/src/rob1_joy.cpp.o] Error 1
+make[1]: *** [CMakeFiles/rob1_joy.dir/all] Error 2
+make: *** [all] Error 2
+CMakeFiles/Makefile2:67: recipe for target 'CMakeFiles/rob1_joy.dir/all' failed
+Makefile:140: recipe for target 'all' failed

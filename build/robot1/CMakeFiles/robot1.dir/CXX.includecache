@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/roblab/BunaiRobcon2021/src/robot1/include/robot1/differential.h
+
+/home/roblab/BunaiRobcon2021/src/robot1/src/lib/differential.cpp
+robot1/differential.h
+/home/roblab/BunaiRobcon2021/src/robot1/src/lib/robot1/differential.h
+iostream
+-
+

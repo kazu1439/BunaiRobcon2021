@@ -1,0 +1,5 @@
+[35m[1mScanning dependencies of target robot1[0m
+[ 50%] Built target rob1_joy
+[ 75%] [32mBuilding CXX object CMakeFiles/robot1.dir/src/lib/differential.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/roblab/BunaiRobcon2021/devel/.private/robot1/lib/librobot1.so[0m
+[100%] Built target robot1

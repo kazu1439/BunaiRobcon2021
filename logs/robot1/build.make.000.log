@@ -1,0 +1,17 @@
+[35m[1mScanning dependencies of target rob1_joy[0m
+[35m[1mScanning dependencies of target robot1[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/robot1.dir/src/lib/differential.cpp.o[0m
+[01m[K/home/roblab/BunaiRobcon2021/src/robot1/src/lib/differential.cpp:4:10:[m[K [01;31m[Kfatal error: [m[KJoy_Con/differential.h: そのようなファイルやディレクトリはありません
+ #include [01;31m[K"Joy_Con/differential.h"[m[K
+          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+CMakeFiles/robot1.dir/build.make:62: recipe for target 'CMakeFiles/robot1.dir/src/lib/differential.cpp.o' failed
+CMakeFiles/Makefile2:648: recipe for target 'CMakeFiles/robot1.dir/all' failed
+make[2]: *** [CMakeFiles/robot1.dir/src/lib/differential.cpp.o] Error 1
+make[1]: *** [CMakeFiles/robot1.dir/all] Error 2
+make[1]: *** 未完了のジョブを待っています....
+[ 50%] [32mBuilding CXX object CMakeFiles/rob1_joy.dir/src/rob1_joy.cpp.o[0m
+[ 75%] [32m[1mLinking CXX executable /home/roblab/BunaiRobcon2021/devel/.private/robot1/lib/robot1/rob1_joy[0m
+[ 75%] Built target rob1_joy
+Makefile:140: recipe for target 'all' failed
+make: *** [all] Error 2

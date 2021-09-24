@@ -1,0 +1,1 @@
+/home/roblab/BunaiRobcon2021/devel/.private/robot2/share/robot2/cmake/robot2Config-version.cmake
