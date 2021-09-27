@@ -1,0 +1,5 @@
+Symlinking /home/roblab/BunaiRobcon2021/devel/lib/librobot1.so
+Symlinking /home/roblab/BunaiRobcon2021/devel/lib/robot1/rob1_joy
+Symlinking /home/roblab/BunaiRobcon2021/devel/lib/pkgconfig/robot1.pc
+Symlinking /home/roblab/BunaiRobcon2021/devel/share/robot1/cmake/robot1Config.cmake
+Symlinking /home/roblab/BunaiRobcon2021/devel/share/robot1/cmake/robot1Config-version.cmake
