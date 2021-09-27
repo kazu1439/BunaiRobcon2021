@@ -1,0 +1,6 @@
+[35m[1mScanning dependencies of target rob2_firework[0m
+make[2]: *** ターゲット 'CMakeFiles/rob2_firework.dir/build' を make するルールがありません.  中止.
+make[1]: *** [CMakeFiles/rob2_firework.dir/all] Error 2
+make: *** [all] Error 2
+CMakeFiles/Makefile2:291: recipe for target 'CMakeFiles/rob2_firework.dir/all' failed
+Makefile:140: recipe for target 'all' failed

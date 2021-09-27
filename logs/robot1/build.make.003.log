@@ -1,5 +1,0 @@
-[35m[1mScanning dependencies of target rob1_joy[0m
-[ 50%] Built target robot1
-[ 75%] [32mBuilding CXX object CMakeFiles/rob1_joy.dir/src/rob1_joy.cpp.o[0m
-[100%] [32m[1mLinking CXX executable /home/roblab/BunaiRobcon2021/devel/.private/robot1/lib/robot1/rob1_joy[0m
-[100%] Built target rob1_joy

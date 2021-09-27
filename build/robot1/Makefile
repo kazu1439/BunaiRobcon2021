@@ -402,19 +402,6 @@ rosgraph_msgs_generate_messages_lisp/fast:
 .PHONY : rosgraph_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named robot1
-
-# Build rule for target.
-robot1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 robot1
-.PHONY : robot1
-
-# fast build rule for target.
-robot1/fast:
-	$(MAKE) -f CMakeFiles/robot1.dir/build.make CMakeFiles/robot1.dir/build
-.PHONY : robot1/fast
-
-#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_eus
 
 # Build rule for target.
@@ -505,33 +492,6 @@ gtest/fast:
 	$(MAKE) -f gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make gtest/googlemock/gtest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
 
-src/lib/differential.o: src/lib/differential.cpp.o
-
-.PHONY : src/lib/differential.o
-
-# target to build an object file
-src/lib/differential.cpp.o:
-	$(MAKE) -f CMakeFiles/robot1.dir/build.make CMakeFiles/robot1.dir/src/lib/differential.cpp.o
-.PHONY : src/lib/differential.cpp.o
-
-src/lib/differential.i: src/lib/differential.cpp.i
-
-.PHONY : src/lib/differential.i
-
-# target to preprocess a source file
-src/lib/differential.cpp.i:
-	$(MAKE) -f CMakeFiles/robot1.dir/build.make CMakeFiles/robot1.dir/src/lib/differential.cpp.i
-.PHONY : src/lib/differential.cpp.i
-
-src/lib/differential.s: src/lib/differential.cpp.s
-
-.PHONY : src/lib/differential.s
-
-# target to generate assembly for a file
-src/lib/differential.cpp.s:
-	$(MAKE) -f CMakeFiles/robot1.dir/build.make CMakeFiles/robot1.dir/src/lib/differential.cpp.s
-.PHONY : src/lib/differential.cpp.s
-
 src/rob1_joy.o: src/rob1_joy.cpp.o
 
 .PHONY : src/rob1_joy.o
@@ -590,7 +550,6 @@ help:
 	@echo "... install"
 	@echo "... rosgraph_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_lisp"
-	@echo "... robot1"
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
@@ -598,9 +557,6 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... src/lib/differential.o"
-	@echo "... src/lib/differential.i"
-	@echo "... src/lib/differential.s"
 	@echo "... src/rob1_joy.o"
 	@echo "... src/rob1_joy.i"
 	@echo "... src/rob1_joy.s"

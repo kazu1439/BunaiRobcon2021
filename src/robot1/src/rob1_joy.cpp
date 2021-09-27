@@ -92,7 +92,7 @@ inline float smoothly_filter_y(float raw_data);
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "tr_joy");
+    ros::init(argc, argv, "rob1_joy");
     ros::NodeHandle nh;
     ros::Publisher pub_order = nh.advertise<std_msgs::Float32MultiArray>("order", 100);
 
