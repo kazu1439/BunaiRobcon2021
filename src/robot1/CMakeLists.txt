@@ -207,5 +207,3 @@ include_directories(
 
 include_directories(include ${catkin_INCLUDE_DIRS})
 
-add_executable(rob1_joy src/rob1_joy.cpp)
-target_link_libraries(rob1_joy ${catkin_LIBRARIES})
