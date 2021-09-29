@@ -30,6 +30,8 @@ Declare variables
 Timer ControlTicker;
 float order_catch[8] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}; //モーター1、モーター2、モーター3、エアシリンダー1、エアシリンダー2、サーボモーター1、サーボモーター2、LEDの値を格納
 
+int cylinder1_move = 0; //エアシリンダー1の伸び縮みを格納(伸びているとき1,縮んでいるとき0)
+int count = 0;          //エアシリンダー1の2秒待つときのカウント
 int servo1_angle = 0;   //サーボモーター1の角度を格納(0°の時0,180°の時1)
 int cylinder2_move = 0; //エアシリンダー2の伸び縮みを格納(伸びているとき1,縮んでいるとき0)
 /**********************************************************************
@@ -72,11 +74,20 @@ inline void SetOrder()
     Motor1.drive(order_catch[0]);
     Motor2.drive(order_catch[1]);
     Motor3.drive(order_catch[2]);
-    cylinder1 = order_catch[3];
-    cylinder2 = cylinder2_move;
-    servo1.rot(180 * servo1_angle); //0°か180°
+    cylinder1 = cylinder1_move;     //発射機構
+    cylinder2 = cylinder2_move;     //回収機構
+    servo1.rot(180 * servo1_angle); //(回収機構)0°か180°
     servo2.rot(order_catch[6]);
     LED = order_catch[7];
+}
+
+inline void firework_Callback(const std_msgs::Float32MultiArray &msg) //
+{
+    order_catch[6] = msg.data[0];
+    order_catch[7] = msg.data[1];
+    order_catch[3] = msg.data[2]; //エアシリンダー1(発射機構)
+    order_catch[5] = msg.data[3]; //サーボモーター1(回収機構)
+    order_catch[4] = msg.data[4]; //エアシリンダー2(回収機構)
 }
 
 inline void if_retrieval_launch()
@@ -84,7 +95,17 @@ inline void if_retrieval_launch()
     //発射機構のエアシリンダーの制御
     if (order_catch[3])
     {
-        wait(2.0); //発射機構のエアシリンダーが伸びたら2秒待つ
+        cylinder1_move = 1;
+    }
+    if (cylinder1_move)
+    {
+        count++;
+    }
+    //プログラムは50Hzで動いている、2秒待つことはcount = 100になる時
+    if (count == 100)
+    {
+        cylinder1_move = 0;
+        count = 0;
     }
     //回収機構のサーボモーターの制御
     if (order_catch[5] && servo1_angle == 0)
@@ -104,13 +125,4 @@ inline void if_retrieval_launch()
     {
         cylinder2_move = 0;
     }
-}
-
-inline void firework_Callback(const std_msgs::Float32MultiArray &msg) //
-{
-    order_catch[6] = msg.data[0];
-    order_catch[7] = msg.data[1];
-    order_catch[3] = msg.data[2]; //エアシリンダー1(発射機構)
-    order_catch[5] = msg.data[3]; //サーボモーター1(回収機構)
-    order_catch[4] = msg.data[4]; //エアシリンダー2(回収機構)
 }
