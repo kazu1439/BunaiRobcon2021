@@ -1,0 +1,36 @@
+[35m[1mScanning dependencies of target rob2_firework[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/rob2_firework.dir/src/rob2_firework.cpp.o[0m
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:38:47:[m[K [01;31m[Kerror: [m[K‘[01m[KFloat32[m[K’ in namespace ‘[01m[Kstd_msgs[m[K’ does not name a type
+ inline void joy_msg_Callback( const std_msgs::[01;31m[KFloat32[m[K::ConstPtr &joy_msg );
+                                               [01;31m[K^~~~~~~[m[K
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:38:65:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K&[m[K’ token
+ inline void joy_msg_Callback( const std_msgs::Float32::ConstPtr [01;31m[K&[m[Kjoy_msg );
+                                                                 [01;31m[K^[m[K
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:38:65:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K&[m[K’ token
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:38:66:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[Kjoy_msg[m[K’
+ inline void joy_msg_Callback( const std_msgs::Float32::ConstPtr &[01;31m[Kjoy_msg[m[K );
+                                                                  [01;31m[K^~~~~~~[m[K
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:66:7:[m[K [01;31m[Kerror: [m[K‘[01m[KServo[m[K’ was not declared in this scope
+       [01;31m[KServo[m[K();
+       [01;31m[K^~~~~[m[K
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:67:7:[m[K [01;31m[Kerror: [m[K‘[01m[KLED[m[K’ was not declared in this scope
+       [01;31m[KLED[m[K();
+       [01;31m[K^~~[m[K
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:[m[K At global scope:
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:84:39:[m[K [01;31m[Kerror: [m[K‘[01m[KFloat32[m[K’ in namespace ‘[01m[Kstd_msgs[m[K’ does not name a type
+ void joy_msg_Callback(const std_msgs::[01;31m[KFloat32[m[K::ConstPtr &joy_msg)
+                                       [01;31m[K^~~~~~~[m[K
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:84:57:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[K&[m[K’ token
+ void joy_msg_Callback(const std_msgs::Float32::ConstPtr [01;31m[K&[m[Kjoy_msg)
+                                                         [01;31m[K^[m[K
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:84:57:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K&[m[K’ token
+[01m[K/home/roblab/BunaiRobcon2021/src/robot2/src/rob2_firework.cpp:84:58:[m[K [01;31m[Kerror: [m[Kexpected initializer before ‘[01m[Kjoy_msg[m[K’
+ void joy_msg_Callback(const std_msgs::Float32::ConstPtr &[01;31m[Kjoy_msg[m[K)
+                                                          [01;31m[K^~~~~~~[m[K
+CMakeFiles/rob2_firework.dir/build.make:62: recipe for target 'CMakeFiles/rob2_firework.dir/src/rob2_firework.cpp.o' failed
+make[2]: *** [CMakeFiles/rob2_firework.dir/src/rob2_firework.cpp.o] Error 1
+CMakeFiles/Makefile2:291: recipe for target 'CMakeFiles/rob2_firework.dir/all' failed
+make[1]: *** [CMakeFiles/rob2_firework.dir/all] Error 2
+Makefile:140: recipe for target 'all' failed
+make: *** [all] Error 2

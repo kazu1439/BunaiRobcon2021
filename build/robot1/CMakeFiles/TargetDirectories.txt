@@ -1,7 +1,6 @@
 /home/roblab/BunaiRobcon2021/build/robot1/CMakeFiles/install/strip.dir
 /home/roblab/BunaiRobcon2021/build/robot1/CMakeFiles/rebuild_cache.dir
 /home/roblab/BunaiRobcon2021/build/robot1/CMakeFiles/test.dir
-/home/roblab/BunaiRobcon2021/build/robot1/CMakeFiles/rob1_joy.dir
 /home/roblab/BunaiRobcon2021/build/robot1/CMakeFiles/std_msgs_generate_messages_nodejs.dir
 /home/roblab/BunaiRobcon2021/build/robot1/CMakeFiles/std_msgs_generate_messages_lisp.dir
 /home/roblab/BunaiRobcon2021/build/robot1/CMakeFiles/install/local.dir

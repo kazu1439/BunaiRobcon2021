@@ -168,19 +168,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named rob1_joy
-
-# Build rule for target.
-rob1_joy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rob1_joy
-.PHONY : rob1_joy
-
-# fast build rule for target.
-rob1_joy/fast:
-	$(MAKE) -f CMakeFiles/rob1_joy.dir/build.make CMakeFiles/rob1_joy.dir/build
-.PHONY : rob1_joy/fast
-
-#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -492,33 +479,6 @@ gtest/fast:
 	$(MAKE) -f gtest/googlemock/gtest/CMakeFiles/gtest.dir/build.make gtest/googlemock/gtest/CMakeFiles/gtest.dir/build
 .PHONY : gtest/fast
 
-src/rob1_joy.o: src/rob1_joy.cpp.o
-
-.PHONY : src/rob1_joy.o
-
-# target to build an object file
-src/rob1_joy.cpp.o:
-	$(MAKE) -f CMakeFiles/rob1_joy.dir/build.make CMakeFiles/rob1_joy.dir/src/rob1_joy.cpp.o
-.PHONY : src/rob1_joy.cpp.o
-
-src/rob1_joy.i: src/rob1_joy.cpp.i
-
-.PHONY : src/rob1_joy.i
-
-# target to preprocess a source file
-src/rob1_joy.cpp.i:
-	$(MAKE) -f CMakeFiles/rob1_joy.dir/build.make CMakeFiles/rob1_joy.dir/src/rob1_joy.cpp.i
-.PHONY : src/rob1_joy.cpp.i
-
-src/rob1_joy.s: src/rob1_joy.cpp.s
-
-.PHONY : src/rob1_joy.s
-
-# target to generate assembly for a file
-src/rob1_joy.cpp.s:
-	$(MAKE) -f CMakeFiles/rob1_joy.dir/build.make CMakeFiles/rob1_joy.dir/src/rob1_joy.cpp.s
-.PHONY : src/rob1_joy.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -528,7 +488,6 @@ help:
 	@echo "... install/strip"
 	@echo "... rebuild_cache"
 	@echo "... test"
-	@echo "... rob1_joy"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... install/local"
@@ -557,9 +516,6 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
-	@echo "... src/rob1_joy.o"
-	@echo "... src/rob1_joy.i"
-	@echo "... src/rob1_joy.s"
 .PHONY : help
 
 
