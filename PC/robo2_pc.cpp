@@ -47,9 +47,9 @@ int main(int argc, char **argv)
     {
         ros::spinOnce();
         if_retrieval_launch();
-        msg_float.data[0] = cylinder1_move; //発射機構のシリンダー
-        msg_float.data[1] = cylinder2_move; //回収機構のシリンダー
-        msg_float.data[2] = servo1_angle;   //回収機構のサーボモーター
+        msg_float.data[0] = cylinder1_move;     //発射機構のシリンダー
+        msg_float.data[1] = cylinder2_move;     //回収機構のシリンダー
+        msg_float.data[2] = 180 * servo1_angle; //回収機構のサーボモーター
         pub_cylinder_servo.publish(msg_float);
         loop_rate.sleep();
     }
