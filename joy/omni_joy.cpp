@@ -92,7 +92,7 @@ int main(int argc, char **argv)
 
 
 
-        pub_counter.publish(msg_float); //mbedに送る
+        pub_counter.publish(msg_float);
         loop_rate.sleep();
     }
     return 0;
