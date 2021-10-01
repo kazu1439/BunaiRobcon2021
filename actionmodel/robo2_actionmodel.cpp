@@ -35,7 +35,7 @@ int main(int argc, char **argv)
    ros::init(argc, argv, "robo2_actionmodel");
    ros::NodeHandle nh;
    ros::Subscriber sub_second = nh.subscribe("joy_content", 100, three_speed_cb);         //joyコンの値を受け取る
-   ros::Publisher pub_float = nh.advertise<std_msgs::Float32MultiArray>("v0_v1_v2", 300);
+   ros::Publisher pub_float = nh.advertise<std_msgs::Float32MultiArray>("v0_v1_v2", 300); //mbedへ
    ros::Rate loop_rate(1.0f / CYCLE_PERIOD);
    msg_three_speed.data.resize(3);
 
