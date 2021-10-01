@@ -88,7 +88,7 @@ int main(int argc, char **argv)
         msg_float.data[0] = a * JoyAxesArray[AXES_STICK_LEFT_X]; //x軸に対する速度
         msg_float.data[1] = a * JoyAxesArray[AXES_STICK_LEFT_Y]; //ｙ軸に対する速度
 
-        pub_counter.publish(msg_float); //mbedに送る
+        pub_counter.publish(msg_float);
         loop_rate.sleep();
     }
     return 0;
