@@ -59,7 +59,7 @@ enum MacroesJoyAxes
 std::vector<int> JoyButtonsArray(17, 0);
 std::vector<float> JoyAxesArray(20, 0.0);
 
-float a = 30;
+float max_value = 30;
 
 std_msgs::Float32MultiArray direction;
 std_msgs::Int32MultiArray function;
@@ -95,9 +95,10 @@ int main(int argc, char **argv)
         direction.data.resize(2);
         function.data.resize(3);
 
-        direction.data[0] = a*JoyAxesArray[AXES_STICK_LEFT_Y]; //前後
-        direction.data[1] = a*JoyAxesArray[AXES_STICK_RIGHT_X]; //左右
-
+        direction.data[0] = max_value*JoyAxesArray[AXES_STICK_LEFT_Y]; //前後
+        direction.data[1] = max_value*JoyAxesArray[AXES_STICK_RIGHT_X]; //左右
+        
+        // The JoyButtonsArray should output 0 or 1.
         function.data[0] = JoyButtonsArray[BUTTONS_TRIANGLE];
         function.data[1]= JoyButtonsArray[BUTTONS_CIRCLE];
         function.data[2] = JoyButtonsArray[BUTTONS_SQUARE];
