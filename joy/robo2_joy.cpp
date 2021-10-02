@@ -62,7 +62,9 @@ std::vector<float> JoyAxesArray(20, 0.0);
 
 float a = 50;
 
-std_msgs::Float32MultiArray msg_float;
+std_msgs::Float32MultiArray msg_float;//速度、旋回
+std_msgs::Float32MultiArray emission; //射出・回収
+std_msgs::Float32MultiArray shot;     //花火
 
 /**********************************************************************
   Proto_type_Declare functions
@@ -82,10 +84,10 @@ int main(int argc, char **argv)
     ros::Publisher pub_counter = nh.advertise<std_msgs::Float32>("joy_content", 100); //速度,旋回速度を送る
 
     /*射出、回収用*/
-    ros::Publisher pub_counter = nh.advertise<std_msgs::Float32>("joy_retrieve_launch", 100); //シリンダー１、シリンダー２、サーボモーター１用送る
+    ros::Publisher pub_retrieve_launch = nh.advertise<std_msgs::Float32>("joy_retrieve_launch", 100); //シリンダー１、シリンダー２、サーボモーター１用送る
 
     /*花火打ち上げ用*/
-    ros::Publisher pub_counter = nh.advertise<std_msgs::Float32>("firework", 100);//サーボモーター２,LED
+    ros::Publisher pub_firework = nh.advertise<std_msgs::Float32>("firework", 100);//サーボモーター２,LED
 
 
     ros::Rate loop_rate(1.0f / CYCLE_PERIOD);
@@ -112,8 +114,8 @@ int main(int argc, char **argv)
         shot.data[7] = JoyAxesArray[AXES_BUTTON_CIRCLE]; //LED
 
         pub_counter.publish(msg_float);
-        pub_counter.publish(emission);
-        pub_counter.publish(shot);
+        pub_retrieve_launch.publish(emission);
+        pub_firework.publish(shot);
 
         
         loop_rate.sleep();
