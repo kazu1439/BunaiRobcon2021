@@ -168,6 +168,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named robo2_pc
+
+# Build rule for target.
+robo2_pc: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robo2_pc
+.PHONY : robo2_pc
+
+# fast build rule for target.
+robo2_pc/fast:
+	$(MAKE) -f CMakeFiles/robo2_pc.dir/build.make CMakeFiles/robo2_pc.dir/build
+.PHONY : robo2_pc/fast
+
+#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_nodejs
 
 # Build rule for target.
@@ -519,6 +532,33 @@ src/rob2_firework.cpp.s:
 	$(MAKE) -f CMakeFiles/rob2_firework.dir/build.make CMakeFiles/rob2_firework.dir/src/rob2_firework.cpp.s
 .PHONY : src/rob2_firework.cpp.s
 
+src/robo2_pc.o: src/robo2_pc.cpp.o
+
+.PHONY : src/robo2_pc.o
+
+# target to build an object file
+src/robo2_pc.cpp.o:
+	$(MAKE) -f CMakeFiles/robo2_pc.dir/build.make CMakeFiles/robo2_pc.dir/src/robo2_pc.cpp.o
+.PHONY : src/robo2_pc.cpp.o
+
+src/robo2_pc.i: src/robo2_pc.cpp.i
+
+.PHONY : src/robo2_pc.i
+
+# target to preprocess a source file
+src/robo2_pc.cpp.i:
+	$(MAKE) -f CMakeFiles/robo2_pc.dir/build.make CMakeFiles/robo2_pc.dir/src/robo2_pc.cpp.i
+.PHONY : src/robo2_pc.cpp.i
+
+src/robo2_pc.s: src/robo2_pc.cpp.s
+
+.PHONY : src/robo2_pc.s
+
+# target to generate assembly for a file
+src/robo2_pc.cpp.s:
+	$(MAKE) -f CMakeFiles/robo2_pc.dir/build.make CMakeFiles/robo2_pc.dir/src/robo2_pc.cpp.s
+.PHONY : src/robo2_pc.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -528,6 +568,7 @@ help:
 	@echo "... install/strip"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... robo2_pc"
 	@echo "... std_msgs_generate_messages_nodejs"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... install/local"
@@ -560,6 +601,9 @@ help:
 	@echo "... src/rob2_firework.o"
 	@echo "... src/rob2_firework.i"
 	@echo "... src/rob2_firework.s"
+	@echo "... src/robo2_pc.o"
+	@echo "... src/robo2_pc.i"
+	@echo "... src/robo2_pc.s"
 .PHONY : help
 
 

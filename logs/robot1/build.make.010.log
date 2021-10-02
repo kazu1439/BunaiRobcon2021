@@ -1,6 +1,0 @@
-[100%] Built target rob1_joy
-make[2]: *** ターゲット 'CMakeFiles/robot1.dir/build' を make するルールがありません.  中止.
-make[1]: *** [CMakeFiles/robot1.dir/all] Error 2
-CMakeFiles/Makefile2:648: recipe for target 'CMakeFiles/robot1.dir/all' failed
-Makefile:140: recipe for target 'all' failed
-make: *** [all] Error 2
