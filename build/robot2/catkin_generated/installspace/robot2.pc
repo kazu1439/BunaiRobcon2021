@@ -1,8 +1,0 @@
-prefix=/home/roblab/BunaiRobcon2021/install
-
-Name: robot2
-Description: Description of robot2
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

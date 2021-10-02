@@ -1,8 +1,0 @@
-prefix=/home/roblab/BunaiRobcon2021/devel/.private/robot1
-
-Name: robot1
-Description: Description of robot1
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

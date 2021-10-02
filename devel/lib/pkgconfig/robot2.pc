@@ -1,1 +1,0 @@
-/home/roblab/BunaiRobcon2021/devel/.private/robot2/lib/pkgconfig/robot2.pc

@@ -1,8 +1,0 @@
-[01m[K/home/roblab/BunaiRobcon2021/src/robot1/src/lib/differential.cpp:4:10:[m[K [01;31m[Kfatal error: [m[KJoy_Con/differential.h: そのようなファイルやディレクトリはありません
- #include [01;31m[K"Joy_Con/differential.h"[m[K
-          [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~[m[K
-compilation terminated.
-make[2]: *** [CMakeFiles/robot1.dir/src/lib/differential.cpp.o] Error 1
-make[1]: *** [CMakeFiles/robot1.dir/all] Error 2
-make[1]: *** 未完了のジョブを待っています....
-make: *** [all] Error 2

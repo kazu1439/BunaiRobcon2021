@@ -1,4 +1,0 @@
-[35m[1mScanning dependencies of target rob2_firework[0m
-[ 50%] [32mBuilding CXX object CMakeFiles/rob2_firework.dir/src/rob2_firework.cpp.o[0m
-[100%] [32m[1mLinking CXX executable /home/roblab/BunaiRobcon2021/devel/.private/robot2/lib/robot2/rob2_firework[0m
-[100%] Built target rob2_firework
