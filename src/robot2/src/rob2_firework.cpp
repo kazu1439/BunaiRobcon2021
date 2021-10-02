@@ -47,7 +47,7 @@ int main(int argc, char **argv)
    ros::init(argc, argv, "rob2_firework");
    ros::NodeHandle nh;
    ros::Publisher pub_firework = nh.advertise<std_msgs::Float32MultiArray>("firework", 100);
-
+   ros::Subscriber sub_joy = nh.subscribe("joy_firework", 100, joy_msg_Callback);
    ros::Rate loop_rate(1.0f / CTRL_PERIOD);
 
    firework_msg.data.resize(2);//{servo2,LED}
