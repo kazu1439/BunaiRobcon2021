@@ -62,7 +62,7 @@ std::vector<float> JoyAxesArray(20, 0.0);
 
 float a = 50;
 
-std_msgs::Float32MultiArray msg_float;//速度、旋回
+std_msgs::Float32MultiArray msg_float;//速度・旋回
 std_msgs::Float32MultiArray emission; //射出・回収
 std_msgs::Float32MultiArray shot;     //花火
 
