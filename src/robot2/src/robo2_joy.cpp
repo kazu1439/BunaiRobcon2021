@@ -1,5 +1,5 @@
 /**********************************************************************
-joyコンを使って三輪オムニを動かすプログラム
+部内ロボコン　機体２　ジョイコン
 **********************************************************************/
 /**********************************************************************
    Include Libraries
@@ -10,7 +10,7 @@ joyコンを使って三輪オムニを動かすプログラム
 #include "std_msgs/Float32MultiArray.h"
 #include "std_msgs/Float32.h"
 #include "std_msgs/Bool.h"
-
+#include <Eigen/Dense>
 
 /**********************************************************************
    Declare variables(変数宣言)
@@ -74,25 +74,48 @@ void joy_ps3_Callback(const sensor_msgs::Joy::ConstPtr &joy_msg);
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "joy_omuni");
+    ros::init(argc, argv, "robo2_joy");
     ros::NodeHandle nh;
     ros::Subscriber sub_first = nh.subscribe("joy_sub", 1, joy_ps3_Callback);         //joyコンの値を受け取る
-    ros::Publisher pub_counter = nh.advertise<std_msgs::Float32MultiArray>("joy_content", 100); //速度,旋回速度を送る
+    
+    /*足回り用*/
+    ros::Publisher pub_counter = nh.advertise<std_msgs::Float32>("joy_content", 100); //速度,旋回速度を送る
+
+    /*射出、回収用*/
+    ros::Publisher pub_counter = nh.advertise<std_msgs::Float32>("joy_retrieve_launch", 100); //シリンダー１、シリンダー２、サーボモーター１用送る
+
+    /*花火打ち上げ用*/
+    ros::Publisher pub_counter = nh.advertise<std_msgs::Float32>("firework", 100);//サーボモーター２,LED
+
+
     ros::Rate loop_rate(1.0f / CYCLE_PERIOD);
 
     while (ros::ok())
     {
         ros::spinOnce(); //callback関数を読み込む
-
+        
+        /*足回り用*/
         msg_float.data.resize(3);
-
         msg_float.data[0] = a * JoyAxesArray[AXES_STICK_LEFT_X]; //x軸に対する速度
         msg_float.data[1] = a * JoyAxesArray[AXES_STICK_LEFT_Y]; //ｙ軸に対する速度
         msg_float.data[2] = JoyAxesArray[AXES_STICK_RIGHT_X];    //旋回速度
 
+        /*射出、回収用*/
+        emission.data.resize(3);
+        emission.data[3] = JoyAxesArray[AXES_BUTTON_CROSS_UP]; //シリンダー１
+        emission.data[4] = JoyAxesArray[AXES_BUTTON_CROSS_RIGHT]; //シリンダー２
+        emission.data[5] = JoyAxesArray[AXES_BUTTON_CROSS_LEFT];//サーボモーター1        
 
+        /*花火打ち上げ用*/
+        shot.data.resize(2);
+        shot.data[6] = JoyAxesArray[AXES_BUTTON_TRIANGLE]; //サーボモーター２
+        shot.data[7] = JoyAxesArray[AXES_BUTTON_CIRCLE]; //LED
 
         pub_counter.publish(msg_float);
+        pub_counter.publish(emission);
+        pub_counter.publish(shot);
+
+        
         loop_rate.sleep();
     }
     return 0;
