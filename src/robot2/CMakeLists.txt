@@ -209,3 +209,6 @@ include_directories(include ${catkin_INCLUDE_DIRS})
 
 add_executable(rob2_firework src/rob2_firework.cpp)
 target_link_libraries(rob2_firework ${catkin_LIBRARIES})
+
+add_executable(robo2_pc src/robo2_pc.cpp)
+target_link_libraries(robo2_pc ${catkin_LIBRARIES})
