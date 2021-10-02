@@ -22,17 +22,17 @@ bool a = true;
 float enc = 0;
 float first_angle = 1.57;
 
-float turtle_x;
-float turtle_y;
-float turtle_theta;
+float front_back;
+float right_left;
+
 
 
 // DigitalIn Sw(A1);
 // DigitalOut Led0(A3);
 // DigitalOut Led1(A0);
 // Timer ControlTicker;
-dc_motor_1 M_l( D3, D8, 1 ); //左車輪
 dc_motor_1 M_r( A6, A11, 1);//右車輪
+dc_motor_1 M_l( D3, D8, 1 ); //左車輪
 AnalogOut collect();//回収機構の電磁弁
 AnalogOut ignition_flag(A3);//花火の電磁弁
 DigitalOut led0(A4);//花火
@@ -45,11 +45,8 @@ rotary_encoder ENC_M_r();//右車輪のエンコーダ
 /**********************************************************************
 Proto_type_Declare functions
 **********************************************************************/
-// void cb_turtle_pose(const turtlesim::PoseConstPtr &msg_pose);
-// void cb_turtle2_pose(const turtlesim::Pose::ConstPtr &msg_pose);
-void cb_inject(const std_msgs::BoolConstPtr &msg_flag);
-// void cb_set(const std_msgs::BoolConstPtr &msg_flag);
-void cb_directions(const std_msgs::Int32MultiArray::ConstPtr &array_);
+void cb_function(const std_msgs::Int32MultiArray &function_array);
+void cb_directions(const std_msgs::Float32MultiArray::ConstPtr &direction_array);
 
 /**********************************************************************
 Main
@@ -61,7 +58,7 @@ int main(int argc, char **argv)
   ros::init(argc, argv, "robo_1");
   ros::NodeHandle nh;
   ros::Rate       loop_rate(1.0 / CTRL_PERIOD);
-  ros::Subscriber sub_inject_flag = nh.subscribe("inject_flag",1,cb_inject);
+  ros::Subscriber sub_function_flag = nh.subscribe("inject_flag",1,cb_function);
   ros::Subscriber sub_directions = nh.subscribe("direction_array",1,cb_directions);
 
 
@@ -70,19 +67,19 @@ int main(int argc, char **argv)
 
   while (ros::ok()) {
     ros::spinOnce();
-    Move(forward, backward, turn_right, turn_left);
+    Move(front_back, right_left);
+    
+    //回収
+    if(collect_flag){
+      Collect();
+    }
     //射出
-    if(){
+    else if(injection_flag){
       Injection();
     }
     //花火
-    if(ignition_flag){
+    else if(ignition_flag){
       Ignition();
-    }
-    //回収
-    if(){
-      Collect();
-
     }
 
     }
@@ -92,39 +89,46 @@ int main(int argc, char **argv)
 /**********************************************************************
 Functions
 **********************************************************************/
-void cb_inject(const std_msgs::Bool::ConstPtr& msg_flag){
-  inject_flag = msg_flag->data;
-}
-void cb_directions(const std_msgs::Int32MultiArray::ConstPtr &array_){
-  int forward = (array_[0] > 0);
-  int backward = (array_[0] < 0);
-  int turn_right = (array_[1] > 0);
-  int turn_left = (array_[1] < 0);
-}
-
-void cb_ignition(const std_msgsBool::ConstPtr& ignition_flag){
-  ignition_flag = ignition_flag->data;
+void cb_directions(const std_msgs::Float32MultiArray::ConstPtr &array){
+  front_back = array->data[0];
+  right_left = array->data[1];
 
 }
 
-void Move(int forward, int backward, int turn_right, int turn_left){
-  if(forward){
-    M_r.drive(20);
-    M_l.drive(20);
+void cb_function(const std_msgs::Int32MultiArray::ConstPtr& array){
+  // ignition_flag = array->data[0];
+  if (array->data[0]){
+    ignition_flag= !ignition_flag;
   }
-  else if(backward){
-    M_r.drive(-20);
-    M_l.drive(-20);
+  // injection_flag = array->data[1];
+  else if (array->datra[1]){
+    injection_flag = !injection_flag;
+  }
+  // collect_flag = array->data[2];
+  else if (array->data[2]){
+    collect_flag = !collect_flag;
+  } 
+
+}
+
+void Move(float front_back, float right_left){
+  if(front_back>0){
+    M_r.drive(front_back);
+    M_l.drive(front_back);
+  }
+  else if(front_back < 0){
+    M_r.drive(front_back);
+    M_l.drive(front_back);
   }
 
-  else if(turn_right){
-    M_r.drive(-20);
-    M_l.drive(20);
+  else if(right_left>0){
+    M_r.drive(-right_left);
+    M_l.drive(right_left);
   }
 
-  else if (turn_left){
-    M_r.drive(20);
-    M_l.drive(-20);
+  else if (right_left < 0){
+    M_r.drive(-right_left);
+    M_l.drive(right_left);
   }
 }
 
