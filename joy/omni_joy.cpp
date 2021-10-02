@@ -76,7 +76,7 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "joy_omuni");
     ros::NodeHandle nh;
-    ros::Subscriber sub_first = nh.subscribe("joy_sub", 1, joy_ps3_Callback);         //joyコンの値を受け取る
+    ros::Subscriber sub_first = nh.subscribe("joy_sub", 1, joy_ps3_Callback);                   //joyコンの値を受け取る
     ros::Publisher pub_counter = nh.advertise<std_msgs::Float32MultiArray>("joy_content", 100); //速度,旋回速度を送る
     ros::Rate loop_rate(1.0f / CYCLE_PERIOD);
 
