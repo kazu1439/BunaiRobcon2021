@@ -84,10 +84,10 @@ int main(int argc, char **argv)
     ros::Publisher pub_counter = nh.advertise<std_msgs::Float32>("joy_content", 100); //速度,旋回速度を送る
 
     /*射出、回収用*/
-    ros::Publisher pub_retrieve_launch = nh.advertise<std_msgs::Float32>("joy_retrieve_launch", 100); //シリンダー１、シリンダー２、サーボモーター１用送る
+    ros::Publisher pub_retrieve_launch = nh.advertise<std_msgs::Float32>("joy_retrieve_launch", 100); //シリンダー１、シリンダー２、サーボモーター１
 
     /*花火打ち上げ用*/
-    ros::Publisher pub_firework = nh.advertise<std_msgs::Float32>("firework", 100);//サーボモーター２,LED
+    ros::Publisher pub_firework = nh.advertise<std_msgs::Float32>("firework", 100);//サーボモーター２、LED
 
 
     ros::Rate loop_rate(1.0f / CYCLE_PERIOD);
