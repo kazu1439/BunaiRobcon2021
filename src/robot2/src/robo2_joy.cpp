@@ -10,7 +10,6 @@
 #include "std_msgs/Float32MultiArray.h"
 #include "std_msgs/Float32.h"
 #include "std_msgs/Bool.h"
-#include <Eigen/Dense>
 
 /**********************************************************************
    Declare variables(変数宣言)
@@ -41,8 +40,8 @@ enum MacroesJoyAxes
 { // アナログ値
     AXES_STICK_LEFT_X = 0,
     AXES_STICK_LEFT_Y = 1,
-    AXES_STICK_RIGHT_X = 2,
-    AXES_STICK_RIGHT_Y = 3,
+    AXES_STICK_RIGHT_X = 3,
+    AXES_STICK_RIGHT_Y = 4,
     AXES_BUTTON_CROSS_UP = 8,
     AXES_BUTTON_CROSS_RIGHT = 9,
     AXES_BUTTON_CROSS_DOWN = 10,
@@ -60,9 +59,9 @@ enum MacroesJoyAxes
 std::vector<int> JoyButtonsArray(17, 0);
 std::vector<float> JoyAxesArray(20, 0.0);
 
-float a = 50;
+float a = 30;
 
-std_msgs::Float32MultiArray msg_float;//速度・旋回
+std_msgs::Float32MultiArray msg_float;  //速度、旋回
 std_msgs::Float32MultiArray emission; //射出・回収
 std_msgs::Float32MultiArray shot;     //花火
 
@@ -70,32 +69,30 @@ std_msgs::Float32MultiArray shot;     //花火
   Proto_type_Declare functions
 **********************************************************************/
 void joy_ps3_Callback(const sensor_msgs::Joy::ConstPtr &joy_msg);
+
 /**********************************************************************
    Main
 **********************************************************************/
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "robo2_joy");
+    ros::init(argc, argv, "joy_omuni");
     ros::NodeHandle nh;
-    ros::Subscriber sub_first = nh.subscribe("joy_sub", 1, joy_ps3_Callback);         //joyコンの値を受け取る
-    
+    ros::Subscriber sub_first = nh.subscribe("joy", 1, joy_ps3_Callback);                       //joyコンの値を受け取る
+
     /*足回り用*/
-    ros::Publisher pub_counter = nh.advertise<std_msgs::Float32>("joy_content", 100); //速度,旋回速度を送る
-
-    /*射出、回収用*/
+    ros::Publisher pub_counter = nh.advertise<std_msgs::Float32MultiArray>("joy_content", 100); //速度,旋回速度を送る
+     /*射出、回収用*/
     ros::Publisher pub_retrieve_launch = nh.advertise<std_msgs::Float32>("joy_retrieve_launch", 100); //シリンダー１、シリンダー２、サーボモーター１用送る
-
     /*花火打ち上げ用*/
-    ros::Publisher pub_firework = nh.advertise<std_msgs::Float32>("firework", 100);//サーボモーター２,LED
-
+    ros::Publisher pub_firework = nh.advertise<std_msgs::Float32>("joy_firework", 100);//サーボモーター２,LED
 
     ros::Rate loop_rate(1.0f / CYCLE_PERIOD);
 
     while (ros::ok())
     {
         ros::spinOnce(); //callback関数を読み込む
-        
+
         /*足回り用*/
         msg_float.data.resize(3);
         msg_float.data[0] = a * JoyAxesArray[AXES_STICK_LEFT_X]; //x軸に対する速度
@@ -104,20 +101,20 @@ int main(int argc, char **argv)
 
         /*射出、回収用*/
         emission.data.resize(3);
-        emission.data[3] = JoyAxesArray[AXES_BUTTON_CROSS_UP]; //シリンダー１
-        emission.data[4] = JoyAxesArray[AXES_BUTTON_CROSS_RIGHT]; //シリンダー２
-        emission.data[5] = JoyAxesArray[AXES_BUTTON_CROSS_LEFT];//サーボモーター1        
-
+        emission.data[3] = JoyButtonsArray[AXES_BUTTON_CROSS_UP]; //シリンダー１
+        emission.data[4] = JoyButtonsArray[AXES_BUTTON_CROSS_RIGHT]; //シリンダー２
+        emission.data[5] = JoyButtonsArray[AXES_BUTTON_CROSS_LEFT];//サーボモーター1        
+        
         /*花火打ち上げ用*/
         shot.data.resize(2);
-        shot.data[6] = JoyAxesArray[AXES_BUTTON_TRIANGLE]; //サーボモーター２
-        shot.data[7] = JoyAxesArray[AXES_BUTTON_CIRCLE]; //LED
+        shot.data[6] = JoyButtonsArray[AXES_BUTTON_TRIANGLE]; //サーボモーター２
+        shot.data[7] = JoyButtonsArray[AXES_BUTTON_CIRCLE]; //LED
+
 
         pub_counter.publish(msg_float);
         pub_retrieve_launch.publish(emission);
         pub_firework.publish(shot);
 
-        
         loop_rate.sleep();
     }
     return 0;
@@ -132,3 +129,4 @@ void joy_ps3_Callback(const sensor_msgs::Joy::ConstPtr &joy_msg)
     JoyButtonsArray = joy_msg->buttons;
     JoyAxesArray = joy_msg->axes;
 }
+
