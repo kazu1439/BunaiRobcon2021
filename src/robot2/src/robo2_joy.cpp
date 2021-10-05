@@ -10,6 +10,8 @@
 #include "std_msgs/Float32MultiArray.h"
 #include "std_msgs/Float32.h"
 #include "std_msgs/Bool.h"
+#include "std_msgs/Int32MultiArray.h"
+
 
 /**********************************************************************
    Declare variables(変数宣言)
