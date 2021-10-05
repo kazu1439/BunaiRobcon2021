@@ -101,14 +101,14 @@ int main(int argc, char **argv)
 
         /*射出、回収用*/
         emission.data.resize(3);
-        emission.data[3] = JoyButtonsArray[AXES_BUTTON_CROSS_UP]; //シリンダー１
-        emission.data[4] = JoyButtonsArray[AXES_BUTTON_CROSS_RIGHT]; //シリンダー２
-        emission.data[5] = JoyButtonsArray[AXES_BUTTON_CROSS_LEFT];//サーボモーター1        
+        emission.data[0] = JoyButtonsArray[AXES_BUTTON_CROSS_UP]; //シリンダー１
+        emission.data[1] = JoyButtonsArray[AXES_BUTTON_CROSS_RIGHT]; //シリンダー２
+        emission.data[2] = JoyButtonsArray[AXES_BUTTON_CROSS_LEFT];//サーボモーター1        
         
         /*花火打ち上げ用*/
         shot.data.resize(2);
-        shot.data[6] = JoyButtonsArray[AXES_BUTTON_TRIANGLE]; //サーボモーター２
-        shot.data[7] = JoyButtonsArray[AXES_BUTTON_CIRCLE]; //LED
+        shot.data[0] = JoyButtonsArray[AXES_BUTTON_TRIANGLE]; //サーボモーター２
+        shot.data[1] = JoyButtonsArray[AXES_BUTTON_CIRCLE]; //LED
 
 
         pub_counter.publish(msg_float);
