@@ -2,6 +2,8 @@ robot2
 /home/roblab/BunaiRobcon2021/devel/.private/robot2/cmake.lock /home/roblab/BunaiRobcon2021/devel/./cmake.lock
 /home/roblab/BunaiRobcon2021/devel/.private/robot2/lib/pkgconfig/robot2.pc /home/roblab/BunaiRobcon2021/devel/lib/pkgconfig/robot2.pc
 /home/roblab/BunaiRobcon2021/devel/.private/robot2/lib/robot2/rob2_firework /home/roblab/BunaiRobcon2021/devel/lib/robot2/rob2_firework
+/home/roblab/BunaiRobcon2021/devel/.private/robot2/lib/robot2/robo2_actionmodel /home/roblab/BunaiRobcon2021/devel/lib/robot2/robo2_actionmodel
+/home/roblab/BunaiRobcon2021/devel/.private/robot2/lib/robot2/robo2_joy /home/roblab/BunaiRobcon2021/devel/lib/robot2/robo2_joy
 /home/roblab/BunaiRobcon2021/devel/.private/robot2/lib/robot2/robo2_pc /home/roblab/BunaiRobcon2021/devel/lib/robot2/robo2_pc
 /home/roblab/BunaiRobcon2021/devel/.private/robot2/share/robot2/cmake/robot2Config-version.cmake /home/roblab/BunaiRobcon2021/devel/share/robot2/cmake/robot2Config-version.cmake
 /home/roblab/BunaiRobcon2021/devel/.private/robot2/share/robot2/cmake/robot2Config.cmake /home/roblab/BunaiRobcon2021/devel/share/robot2/cmake/robot2Config.cmake

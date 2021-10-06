@@ -18,7 +18,7 @@ Declare MACRO
 /**********************************************************************
 Proto_type_Declare functions
 **********************************************************************/
-void joy_cd(const std_msgs::Float32MultiArray::ConstPtr &msg);
+void joy_cd(const std_msgs::Int32MultiArray::ConstPtr &msg);
 void if_retrieval_launch();
 /**********************************************************************
 Declare variables
@@ -28,7 +28,7 @@ int count = 0;          //エアシリンダー1の2秒待つときのカウン�
 int servo1_angle = 0;   //サーボモーター1の角度を格納(0°の時0,180°の時1)
 int cylinder2_move = 0; //エアシリンダー2の伸び縮みを格納(伸びているとき1,縮んでいるとき0)
 
-std::vector<float> cylinder_servo = {0, 0, 0}; //送られてきたやつを格納,シリンダー１、シリンダー２、サーボモーター１
+std::vector<int> cylinder_servo = {0, 0, 0}; //送られてきたやつを格納,シリンダー１、シリンダー２、サーボモーター１
 std_msgs::Float32MultiArray msg_float;
 /**********************************************************************
 Main
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 /*****************************************************************
 Functions <Call Back>
 *****************************************************************/
-void joy_cd(const std_msgs::Float32MultiArray::ConstPtr &msg)
+void joy_cd(const std_msgs::Int32MultiArray::ConstPtr &msg)
 {
     cylinder_servo = msg->data;
 }

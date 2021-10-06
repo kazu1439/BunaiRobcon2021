@@ -16,6 +16,7 @@
 #include "sensor_msgs/Joy.h"
 #include <vector>
 #include "std_msgs/Float32MultiArray.h"
+#include "std_msgs/Int32MultiArray.h"
 #include <string>
 #include <cstdio>
 #include <cmath>
@@ -24,18 +25,18 @@
    Declare variables
 **********************************************************************/
 #define CTRL_PERIOD 0.02f
-std_msgs::Float32MultiArray firework_msg;
-float joy_catch[17];
-float last_joy_catch[17];
-float Time = 0;
-bool servo_mech = false;
-bool LED_mech = false;
+std_msgs::Float32MultiArray firework_msg;//mbed側に送る
+int joy_catch[2];//今のボタンの状態
+int last_joy_catch[2];//直前のボタンの状態
+float Time = 0;//時間制御の変数
+bool servo_mech = false;//サーボモーター制御の状態
+bool LED_mech = false;//LED制御の状態
 int servo_button_num = 0;
 int LED_button_num = 1;
 /**********************************************************************
    Proto_type_Declare functions
 **********************************************************************/
-inline void joy_msg_Callback( const std_msgs::Float32MultiArray::ConstPtr &joy_msg );
+inline void joy_msg_Callback( const std_msgs::Int32MultiArray::ConstPtr &joy_msg );
 inline void Servo();
 inline void LED();
 /**********************************************************************
@@ -68,7 +69,7 @@ int main(int argc, char **argv)
 
       pub_firework.publish(firework_msg);  
       
-      for (int i = 0; i < 17; i++)
+      for (int i = 0; i < 2; i++)
       {
          last_joy_catch[i] = joy_catch[i];
       }
@@ -81,31 +82,31 @@ int main(int argc, char **argv)
    Functions
 **********************************************************************/
 
-inline void joy_msg_Callback(const std_msgs::Float32MultiArray::ConstPtr &joy_msg)
+inline void joy_msg_Callback(const std_msgs::Int32MultiArray::ConstPtr &joy_msg)//joyコンの値を受け取る
 {
-   for (int i = 0; i < 17; i++)
+   for (int i = 0; i < 2; i++)
    {
       joy_catch[i] = joy_msg->data[i];
    }
 }
 
-inline void Servo(){
+inline void Servo(){//サーボモータ制御
    if(servo_mech == true && Time < 10){
       Time += CTRL_PERIOD;
-      firework_msg.data[0] = 0;
+      firework_msg.data[0] = 0.0;
    }
    else{
       servo_mech = false;
       Time = 0;
-      firework_msg.data[0] = 30;
+      firework_msg.data[0] = 30.0;
    }
 }
 
-inline void LED(){
+inline void LED(){//LED制御
    if(LED_mech == true){
-      firework_msg.data[1] = 1;
+      firework_msg.data[1] = 1.0;
    }
    else{
-      firework_msg.data[1] = 0;
+      firework_msg.data[1] = 0.0;
    }
 }

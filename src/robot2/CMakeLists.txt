@@ -206,9 +206,16 @@ include_directories(
 # catkin_add_nosetests(test)
 
 include_directories(include ${catkin_INCLUDE_DIRS})
+include_directories(/usr/include/eigen3)
 
 add_executable(rob2_firework src/rob2_firework.cpp)
 target_link_libraries(rob2_firework ${catkin_LIBRARIES})
 
 add_executable(robo2_pc src/robo2_pc.cpp)
 target_link_libraries(robo2_pc ${catkin_LIBRARIES})
+
+add_executable(robo2_actionmodel src/robo2_actionmodel.cpp)
+target_link_libraries(robo2_actionmodel ${catkin_LIBRARIES})
+
+add_executable(robo2_joy src/robo2_joy.cpp)
+target_link_libraries(robo2_joy ${catkin_LIBRARIES})
