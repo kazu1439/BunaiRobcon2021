@@ -103,14 +103,14 @@ int main(int argc, char **argv)
 
         /*射出、回収用*/
         emission.data.resize(3);
-        emission.data[0] = JoyButtonsArray[AXES_BUTTON_CROSS_UP]; //シリンダー１
-        emission.data[1] = JoyButtonsArray[AXES_BUTTON_CROSS_RIGHT]; //シリンダー２
-        emission.data[2] = JoyButtonsArray[AXES_BUTTON_CROSS_LEFT];//サーボモーター1        
+        emission.data[0] = JoyButtonsArray[BUTTONS_CIRCLE]; //シリンダー１
+        emission.data[1] = JoyButtonsArray[BUTTONS_CROSS]; //シリンダー２
+        emission.data[2] = JoyButtonsArray[BUTTONS_SQUARE];//サーボモーター1        
         
         /*花火打ち上げ用*/
         shot.data.resize(2);
-        shot.data[0] = JoyButtonsArray[AXES_BUTTON_TRIANGLE]; //サーボモーター２
-        shot.data[1] = JoyButtonsArray[AXES_BUTTON_CIRCLE]; //LED
+        shot.data[0] = JoyButtonsArray[BUTTONS_L2]; //サーボモーター２
+        shot.data[1] = JoyButtonsArray[BUTTONS_R2]; //LED
 
 
         pub_counter.publish(msg_float);
@@ -131,4 +131,3 @@ void joy_ps3_Callback(const sensor_msgs::Joy::ConstPtr &joy_msg)
     JoyButtonsArray = joy_msg->buttons;
     JoyAxesArray = joy_msg->axes;
 }
-
