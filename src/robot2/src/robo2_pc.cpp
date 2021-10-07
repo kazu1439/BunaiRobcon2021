@@ -51,6 +51,9 @@ int main(int argc, char **argv)
         msg_float.data[1] = cylinder2_move;     //回収機構のシリンダー
         msg_float.data[2] = 180 * servo1_angle; //回収機構のサーボモーター
         pub_cylinder_servo.publish(msg_float);
+
+        //ROS_INFO("%i, %i, %i", cylinder_servo[0],cylinder_servo[1],cylinder_servo[2]);
+
         loop_rate.sleep();
     }
 }
