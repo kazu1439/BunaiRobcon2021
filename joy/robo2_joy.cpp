@@ -10,6 +10,8 @@
 #include "std_msgs/Float32MultiArray.h"
 #include "std_msgs/Float32.h"
 #include "std_msgs/Bool.h"
+#include "std_msgs/Int32MultiArray.h"
+
 
 /**********************************************************************
    Declare variables(変数宣言)
@@ -62,8 +64,8 @@ std::vector<float> JoyAxesArray(20, 0.0);
 float a = 30;
 
 std_msgs::Float32MultiArray msg_float;  //速度、旋回
-std_msgs::Float32MultiArray emission; //射出・回収
-std_msgs::Float32MultiArray shot;     //花火
+std_msgs::Int32MultiArray emission; //射出・回収
+std_msgs::Int32MultiArray shot;     //花火
 
 /**********************************************************************
   Proto_type_Declare functions
@@ -83,9 +85,9 @@ int main(int argc, char **argv)
     /*足回り用*/
     ros::Publisher pub_counter = nh.advertise<std_msgs::Float32MultiArray>("joy_content", 100); //速度,旋回速度を送る
      /*射出、回収用*/
-    ros::Publisher pub_retrieve_launch = nh.advertise<std_msgs::Float32>("joy_retrieve_launch", 100); //シリンダー１、シリンダー２、サーボモーター１用送る
+    ros::Publisher pub_retrieve_launch = nh.advertise<std_msgs::Int32MultiArray>("joy_retrieve_launch", 100); //シリンダー１、シリンダー２、サーボモーター１用送る
     /*花火打ち上げ用*/
-    ros::Publisher pub_firework = nh.advertise<std_msgs::Float32>("joy_firework", 100);//サーボモーター２,LED
+    ros::Publisher pub_firework = nh.advertise<std_msgs::Int32MultiArray>("joy_firework", 100);//サーボモーター２,LED
 
     ros::Rate loop_rate(1.0f / CYCLE_PERIOD);
 
@@ -101,14 +103,14 @@ int main(int argc, char **argv)
 
         /*射出、回収用*/
         emission.data.resize(3);
-        emission.data[0] = JoyButtonsArray[AXES_BUTTON_CROSS_UP]; //シリンダー１
-        emission.data[1] = JoyButtonsArray[AXES_BUTTON_CROSS_RIGHT]; //シリンダー２
-        emission.data[2] = JoyButtonsArray[AXES_BUTTON_CROSS_LEFT];//サーボモーター1        
+        emission.data[0] = JoyButtonsArray[BUTTONS_CIRCLE]; //シリンダー１
+        emission.data[1] = JoyButtonsArray[BUTTONS_CROSS]; //シリンダー２
+        emission.data[2] = JoyButtonsArray[BUTTONS_SQUARE];//サーボモーター1        
         
         /*花火打ち上げ用*/
         shot.data.resize(2);
-        shot.data[0] = JoyButtonsArray[AXES_BUTTON_TRIANGLE]; //サーボモーター２
-        shot.data[1] = JoyButtonsArray[AXES_BUTTON_CIRCLE]; //LED
+        shot.data[0] = JoyButtonsArray[BUTTONS_L2]; //サーボモーター２
+        shot.data[1] = JoyButtonsArray[BUTTONS_R2]; //LED
 
 
         pub_counter.publish(msg_float);
@@ -129,4 +131,3 @@ void joy_ps3_Callback(const sensor_msgs::Joy::ConstPtr &joy_msg)
     JoyButtonsArray = joy_msg->buttons;
     JoyAxesArray = joy_msg->axes;
 }
-
