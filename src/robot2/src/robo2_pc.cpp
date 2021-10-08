@@ -86,20 +86,28 @@ void if_retrieval_launch()
     //回収機構のエアシリンダーの制御
     if (cylinder_servo[1] && cylinder2_move == 0)
     {
-        cylinder2_move = 1;
+        if(cylinder_servo[1] == 0){
+            cylinder2_move = 1;
+        }
     }
     else if (cylinder_servo[1] && cylinder2_move == 1)
     {
-        cylinder2_move = 0;
+        if(cylinder_servo[1] == 0){
+            cylinder2_move = 0;
+        }
     }
 
     //回収機構のサーボモーターの制御
     if (cylinder_servo[2] && servo1_angle == 0)
     {
-        servo1_angle = 1;
+        if(cylinder_servo[2] == 0){
+            servo1_angle = 1;
+        }
     }
     else if (cylinder_servo[2] && servo1_angle == 1)
     {
-        servo1_angle = 0;
+        if(cylinder_servo[2] == 0){
+            servo1_angle = 0;
+        }
     }
 }
