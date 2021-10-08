@@ -18,6 +18,7 @@
 **********************************************************************/
 #define CYCLE_PERIOD 0.02f
 
+/**下の番号は間違っている可能性があるので実際に使用するコントローラーで確認＆変更が必要
 enum MacroesJoyButtons
 { //デジタル値
     BUTTONS_SELECT = 0,
@@ -60,6 +61,40 @@ enum MacroesJoyAxes
 
 std::vector<int> JoyButtonsArray(17, 0);
 std::vector<float> JoyAxesArray(20, 0.0);
+
+**/
+
+//ps4コントローラーの番号を追記
+enum MacroesJoyButtons
+{ //デジタル値(int)
+    BUTTONS_CROSS = 0,
+    BUTTONS_CIRCLE = 1,
+    BUTTONS_TRIANGLE = 2,
+    BUTTONS_SQUARE = 3,
+    BUTTONS_L1 = 4,
+    BUTTONS_R1 = 5,
+    BUTTONS_L2 = 6,
+    BUTTONS_R2 = 7,
+    BUTTONS_SHARE = 8,
+    BUTTONS_OPTIONS = 9,
+    BUTTONS_PAIRING = 10,
+    BUTTONS_STICK_LEFT = 11,
+    BUTTONS_STICK_RIGHT = 12
+};
+enum MacroesJoyAxes
+{ // アナログ値(float)
+    AXES_STICK_LEFT_X = 0,
+    AXES_STICK_LEFT_Y = 1,
+    AXES_BUTTON_L2 = 2,
+    AXES_STICK_RIGHT_X = 3,
+    AXES_STICK_RIGHT_Y = 4,
+    AXES_BUTTON_R2 = 5,
+    AXES_BUTTON_CROSS_X = 6,
+    AXES_BUTTON_CROSS_Y = 7
+};
+
+std::vector<int> JoyButtonsArray(13, 0);
+std::vector<float> JoyAxesArray(8, 0.0);
 
 float a = 30;
 
