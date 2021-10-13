@@ -1,5 +1,6 @@
 /*********************************
-回収機構と発射機構の制御プログラム(test)
+回収機構と発射機構の制御プログラム
+大渕　大地
 **********************************/
 /**********************************************************************
 Include Libraries
@@ -19,7 +20,7 @@ Declare MACRO
 Proto_type_Declare functions
 **********************************************************************/
 void joy_cd(const std_msgs::Int32MultiArray::ConstPtr &msg);
-void if_retrieval_launch();
+void control_retrieval_launch();
 /**********************************************************************
 Declare variables
 **********************************************************************/
@@ -27,8 +28,8 @@ int cylinder1_move = 0; //エアシリンダー1の伸び縮みを格納(伸び�
 int count = 0;          //エアシリンダー1の2秒待つときのカウント
 int servo1_angle = 0;   //サーボモーター1の角度を格納(0°の時0,180°の時1)
 int cylinder2_move = 0; //エアシリンダー2の伸び縮みを格納(伸びているとき1,縮んでいるとき0)
-bool sw_1 = 0;//スイッチオフオン
-bool sw_2 = 0;
+bool sw_1 = 0;//シリンダー2のスイッチ制御
+bool sw_2 = 0;//サーボモーター1のスイッチ制御
 
 std::vector<int> cylinder_servo = {0, 0, 0}; //送られてきたやつを格納,シリンダー１、シリンダー２、サーボモーター１
 std_msgs::Float32MultiArray msg_float;
@@ -48,7 +49,7 @@ int main(int argc, char **argv)
     while (ros::ok())
     {
         ros::spinOnce();
-        if_retrieval_launch();
+        control_retrieval_launch();
         msg_float.data[0] = cylinder1_move;     //発射機構のシリンダー
         msg_float.data[1] = cylinder2_move;     //回収機構のシリンダー
         msg_float.data[2] = 180 * servo1_angle; //回収機構のサーボモーター
@@ -67,7 +68,7 @@ void joy_cd(const std_msgs::Int32MultiArray::ConstPtr &msg)
     cylinder_servo = msg->data;
 }
 
-void if_retrieval_launch()
+void control_retrieval_launch()
 {
     //スイッチの制御
     if (sw_1 == 1 && cylinder_servo[1] == 0){
@@ -116,8 +117,4 @@ void if_retrieval_launch()
             sw_2 = 1;
     }
 
-    // //スイッチの制御
-    // if (sw == 1 && cylinder_servo[1] == 0 || cylinder_servo[2] == 0){
-    //     sw = 0;
-    // }
 }
