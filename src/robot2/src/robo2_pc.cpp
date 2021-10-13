@@ -27,7 +27,8 @@ int cylinder1_move = 0; //エアシリンダー1の伸び縮みを格納(伸び�
 int count = 0;          //エアシリンダー1の2秒待つときのカウント
 int servo1_angle = 0;   //サーボモーター1の角度を格納(0°の時0,180°の時1)
 int cylinder2_move = 0; //エアシリンダー2の伸び縮みを格納(伸びているとき1,縮んでいるとき0)
-bool sw = 0;//スイッチオフオン
+bool sw_1 = 0;//スイッチオフオン
+bool sw_2 = 0;
 
 std::vector<int> cylinder_servo = {0, 0, 0}; //送られてきたやつを格納,シリンダー１、シリンダー２、サーボモーター１
 std_msgs::Float32MultiArray msg_float;
@@ -69,8 +70,11 @@ void joy_cd(const std_msgs::Int32MultiArray::ConstPtr &msg)
 void if_retrieval_launch()
 {
     //スイッチの制御
-    if (sw == 1 && cylinder_servo[1] == 0 || cylinder_servo[2] == 0){
-        sw = 0;
+    if (sw_1 == 1 && cylinder_servo[1] == 0){
+        sw_1 = 0;
+    }
+    if (sw_2 == 1 && cylinder_servo[2] == 0){
+        sw_2 = 0;
     }
     //発射機構のエアシリンダーの制御
     if (cylinder_servo[0])
@@ -89,27 +93,27 @@ void if_retrieval_launch()
     }
 
     //回収機構のエアシリンダーの制御
-    if (cylinder_servo[1] && cylinder2_move == 0 && sw == 0)
+    if (cylinder_servo[1] && cylinder2_move == 0 && sw_1 == 0)
     {
             cylinder2_move = 1;
-            sw = 1;
+            sw_1 = 1;
     }
-    else if (cylinder_servo[1] && cylinder2_move == 1 && sw == 0)
+    else if (cylinder_servo[1] && cylinder2_move == 1 && sw_1 == 0)
     {
             cylinder2_move = 0;
-            sw = 1; 
+            sw_1 = 1; 
     }
 
     //回収機構のサーボモーターの制御
-    if (cylinder_servo[2] && servo1_angle == 0 && sw == 0)
+    if (cylinder_servo[2] && servo1_angle == 0 && sw_2 == 0)
     {
             servo1_angle = 1;
-            sw = 1;
+            sw_2 = 1;
     }
-    else if (cylinder_servo[2] && servo1_angle == 1 && sw == 0)
+    else if (cylinder_servo[2] && servo1_angle == 1 && sw_2 == 0)
     {
             servo1_angle = 0;
-            sw = 1;
+            sw_2 = 1;
     }
 
     // //スイッチの制御
