@@ -68,6 +68,10 @@ void joy_cd(const std_msgs::Int32MultiArray::ConstPtr &msg)
 
 void if_retrieval_launch()
 {
+    //スイッチの制御
+    if (sw == 1 && cylinder_servo[1] == 0 || cylinder_servo[2] == 0){
+        sw = 0;
+    }
     //発射機構のエアシリンダーの制御
     if (cylinder_servo[0])
     {
@@ -108,8 +112,8 @@ void if_retrieval_launch()
             sw = 1;
     }
 
-    //スイッチの制御
-    if (sw == 1 && cylinder_servo[1] == 0 || cylinder_servo[2] == 0){
-        sw = 0;
-    }
+    // //スイッチの制御
+    // if (sw == 1 && cylinder_servo[1] == 0 || cylinder_servo[2] == 0){
+    //     sw = 0;
+    // }
 }
