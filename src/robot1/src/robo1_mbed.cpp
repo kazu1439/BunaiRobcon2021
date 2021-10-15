@@ -44,8 +44,8 @@ DigitalOut led0(A4);//花火
 // LPF lpf_0( CTRL_PERIOD, 0.3 );
 // PID pid( CTRL_PERIOD );
 rotary_encoder ENC_inject(D4,D5,NC,50,rotary_encoder::X4_ENCODING);
-rotary_encoder ENC_M_l();//左舎利のエンコーダ
-rotary_encoder ENC_M_r();//右車輪のエンコーダ
+// rotary_encoder ENC_M_l();//左舎利のエンコーダ
+// rotary_encoder ENC_M_r();//右車輪のエンコーダ
 
 /**********************************************************************
 Proto_type_Declare functions
