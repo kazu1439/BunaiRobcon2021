@@ -38,6 +38,11 @@ AnalogOut collect();//回収機構の電磁弁
 AnalogOut ignition(A3);//花火の電磁弁
 DigitalOut led0(A4);//花火
 rotary_encoder ENC_inject(D4,D5,NC,50,rotary_encoder::X4_ENCODING);
+<<<<<<< HEAD
+=======
+// rotary_encoder ENC_M_l();//左舎利のエンコーダ
+// rotary_encoder ENC_M_r();//右車輪のエンコーダ
+>>>>>>> 4ab942debafc345dcde667828ae564eea2f31e84
 
 /**********************************************************************
 Proto_type_Declare functions
@@ -186,6 +191,7 @@ void Collect(){
   }
 
 }
+<<<<<<< HEAD
 
 void check_state(){
   ROSINFO("%d",front_back);
@@ -196,3 +202,5 @@ void check_state(){
   ROSINFO("%d",a);
   ROSINFO("%d",state);
 }
+=======
+>>>>>>> 4ab942debafc345dcde667828ae564eea2f31e84
