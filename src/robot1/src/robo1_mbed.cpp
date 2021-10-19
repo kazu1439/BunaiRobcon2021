@@ -8,44 +8,36 @@ Define MACROES
 /**********************************************************************
 Include Libraries
 **********************************************************************/
-// #include <mbed.h>
+#include <mbed.h>
 #include <ros/ros.h>
-#include <geometry_msgs/Twist.h>
+#include <std_msgs/Float32MultiArray.h>
+#include <std_msgs/Int32MultiArray.h>
 #include <std_msgs/Bool.h>
 #include <math.h>
 #include <rotary_encoder.h>
 /**********************************************************************
 Declare variables
 **********************************************************************/
-bool ignition_flag = false;
-bool injection_flag = false;
-bool collect_flag = false;
-
-bool a = true;
-float enc;
-float first_angle = 1.57;
-
-float front_back;
-float right_left;
+bool ignition_flag = false; //花火
+bool injection_flag = false;//射出
+bool collect_flag = false;//回収
+bool state = false;//ピストンが縮んでるか否か
 
 
+bool a = true; //射出機構、どこまで引いたかの判定
+float enc;　// どんだけ回ったか
+
+float front_back;　//前後
+float right_left; //旋回
 
 
-
-// DigitalIn Sw(A1);
-// DigitalOut Led0(A3);
-// DigitalOut Led1(A0);
-// Timer ControlTicker;
+Timer ControlTicker;
 dc_motor_1 M_r( A6, A11, 1);//右車輪
 dc_motor_1 M_l( D3, D8, 1 ); //左車輪
 AnalogOut collect();//回収機構の電磁弁
 AnalogOut ignition(A3);//花火の電磁弁
 DigitalOut led0(A4);//花火
-// LPF lpf_0( CTRL_PERIOD, 0.3 );
-// PID pid( CTRL_PERIOD );
 rotary_encoder ENC_inject(D4,D5,NC,50,rotary_encoder::X4_ENCODING);
-rotary_encoder ENC_M_l();//左舎利のエンコーダ
-rotary_encoder ENC_M_r();//右車輪のエンコーダ
 
 /**********************************************************************
 Proto_type_Declare functions
@@ -59,30 +51,32 @@ Main
 int main(int argc, char **argv)
 {
   ros::init(argc, argv, "robo_1");
-  ros::NodeHandle nh;
-  ros::Rate       loop_rate(1.0 / CTRL_PERIOD);
-  ros::Subscriber sub_function_flag = nh.subscribe("inject_flag",1,cb_function);
-  ros::Subscriber sub_directions = nh.subscribe("direction_array",1,cb_directions);
+  ros::NodeHandle nh; //nodehandleをnhという名前でつかう
+  ros::Rate       loop_rate(1.0 / CTRL_PERIOD); //50ｈｚでまわす
+  ros::Subscriber sub_function_flag = nh.subscribe("inject_flag",1,cb_function); //topic名"inject_flag"でcb_functionを実行 
+  ros::Subscriber sub_directions = nh.subscribe("direction_array",1,cb_directions);//topic名"inject_flag"でcb_functionを実行 
 
   while (ros::ok()) {
     ros::spinOnce();
     //常に射出の待機状態にする
     //最初だけ回る、射出の際は一周するので初期位置に戻ってくる
-    enc = 0;
+    enc = 0; //射出モータ
     while(a){
       if(enc>1.57){
-        Minject.drive(0);
-        a =false;
+        Minject.drive(0); //1.57以上になったら回転を止める
+        a =false;//whileの判定
         break;
       }
-      Minject.drive(10);
-      enc = ENC_inject.getRad();
+      Minject.drive(10);//10でまわす
+      enc = ENC_inject.getRad();//回転角の読み取り
     }
 
-    Move(front_back, right_left);
+    Move(front_back, right_left);// 動く
     
     //回収
-    Collect()
+    if(collect_flag){
+      Collect()
+    }
     //射出
     else if(injection_flag){
       Injection();
@@ -91,6 +85,8 @@ int main(int argc, char **argv)
     else if(ignition_flag){
       Ignition();
     }
+
+    loop_rate.sleep();
 
     }
   return 0;
@@ -119,7 +115,12 @@ void cb_function(const std_msgs::Int32MultiArray::ConstPtr& array){
   // collect_flag = array->data[2];
   else if (array->data[2]){
     collect_flag = true;
-  } 
+  }
+  else{
+    ignition_flag = false;
+    injection_flag = false;
+    collect_flag = false;
+  }
 
 }
 
@@ -170,7 +171,6 @@ void Injection(){
     }
     inject_flag = false;
     enc = 0;
-    // a = true;
 }
 
 void Collect(){
@@ -185,4 +185,14 @@ void Collect(){
     state = !state;
   }
 
+}
+
+void check_state(){
+  ROSINFO("%d",front_back);
+  ROSINFO("%d",right_left);
+  ROSINFO("%d",ignition_flag);
+  ROSINFO("%d",injection_flag);
+  ROSINFO("%d",collect_flag);
+  ROSINFO("%d",a);
+  ROSINFO("%d",state);
 }

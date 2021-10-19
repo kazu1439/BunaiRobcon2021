@@ -78,10 +78,10 @@ int main(int argc, char **argv)
     ros::NodeHandle nh;
     ros::Subscriber sub_first = nh.subscribe("joy", 1, joy_ps3_Callback);                       //receive the value of joystick
     ros::Publisher pub_direction_array = nh.advertise<std_msgs::Float32MultiArray>("direction_array", 100); //send forward/backward and left/right turn speed.
+    ros::Publisher pub_function_array = nh.advertise<std_msgs::Int32MultiArray>("function_array", 100); 
     // ros::Publisher pub_ignition = nh.advertise<std_msgs::Int32>("ignition",100); // signal for launching fireworks
     // ros::Publisher pub_injection = nh.advertise<std_msgs::Int32>("injection", 100); //send a signal for inject the dice
     // ros::Publisher pub_collection = nh.advertise<std_msgs::Int32>("collection", 100); //send a signal for collect the dice
-    ros::Publisher pub_function_array = nh.advertise<std_msgs::Int32MultiArray>("function_array", 100); 
     // send a signal for launch fireworks, ingect the dice and collect the dice
     
 
