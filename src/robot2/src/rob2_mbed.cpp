@@ -24,6 +24,7 @@ Proto_type_Declare functions
 inline void firework_Callback(const std_msgs::Float32MultiArray &msg);
 inline void SetOrder();
 inline void retrieve_launch_cb(const std_msgs::Float32MultiArray &msg); //回収機構と発射機構のcb
+inline void wheel_cb(const std_msgs::Float32MultiArray::ConstPtr &msg);
 /**********************************************************************
 Declare variables
 **********************************************************************/
@@ -33,17 +34,19 @@ float order_catch[8] = {0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f}; //モ�
 Declare Instances
 **********************************************************************/
 Serial PC(USBTX, USBRX, 115200);
-dc_motor_1 Motor1(D3, D8, 0);
-dc_motor_1 Motor2(D3, D8, 0);
-dc_motor_1 Motor3(D3, D8, 0);
-DigitalOut cylinder1(A1);
-DigitalOut cylinder2(A1);
-ServoMotor servo1(D4, 0.0);
-ServoMotor servo2(D4, 0.0);
+//モータは第3引数の調節必要
+dc_motor_1 Motor1(PB_0, PF_1, 1);
+dc_motor_1 Motor2(PA_7, PB_5, 0);
+dc_motor_1 Motor3(PA_3, PA_1, 1);
+DigitalOut cylinder1(A3);
+DigitalOut cylinder2(A0);
+ServoMotor servo1(A6, 0.0);
+ServoMotor servo2(A2, 0.0);
 DigitalOut LED(A1);
 
 ros::Subscriber<std_msgs::Float32MultiArray> order_sub("firework", &firework_Callback);
 ros::Subscriber<std_msgs::Float32MultiArray> sub_retrieve_launch("robo_retrieve_launch", &retrieve_launch_cb);
+ros::Subscriber<std_msgs::Float32MultiArray> sub_wheel("v0_v1_v2", &wheel_cb);
 int main(int argc, char **argv)
 {
   ControlTicker.start();
@@ -51,6 +54,8 @@ int main(int argc, char **argv)
   n.getHardware()->setBaud(115200);
   n.initNode();
   n.subscribe(order_sub);
+  n.subscribe(sub_retrieve_launch);
+  n.subscribe(sub_wheel);
 
   for (;;)
   {
@@ -87,3 +92,12 @@ inline void retrieve_launch_cb(const std_msgs::Float32MultiArray &msg)
   order_catch[4] = msg.data[1]; //シリンダー2（回収機構）
   order_catch[5] = msg.data[2]; //サーボモーター1（回収機構）
 }
+
+inline void wheel_cb(const std_msgs::Float32MultiArray::ConstPtr &msg){
+  order_catch[0] = msg.data[0];
+  order_catch[1] = msg.data[1];
+  order_catch[2] = msg.data[2];
+}
+
+
+//私のお墓の前で鳴かないでください。そこに私はいません。眠ってなんかいません。
