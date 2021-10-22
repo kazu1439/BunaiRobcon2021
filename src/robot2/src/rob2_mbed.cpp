@@ -24,7 +24,7 @@ Proto_type_Declare functions
 inline void firework_Callback(const std_msgs::Float32MultiArray &msg);
 inline void SetOrder();
 inline void retrieve_launch_cb(const std_msgs::Float32MultiArray &msg); //回収機構と発射機構のcb
-inline void wheel_cb(const std_msgs::Float32MultiArray::ConstPtr &msg);
+inline void wheel_cb(const std_msgs::Float32MultiArray &msg);
 /**********************************************************************
 Declare variables
 **********************************************************************/
@@ -93,11 +93,10 @@ inline void retrieve_launch_cb(const std_msgs::Float32MultiArray &msg)
   order_catch[5] = msg.data[2]; //サーボモーター1（回収機構）
 }
 
-inline void wheel_cb(const std_msgs::Float32MultiArray::ConstPtr &msg){
+inline void wheel_cb(const std_msgs::Float32MultiArray &msg){
   order_catch[0] = msg.data[0];
   order_catch[1] = msg.data[1];
   order_catch[2] = msg.data[2];
 }
 
 
-//私のお墓の前で鳴かないでください。そこに私はいません。眠ってなんかいません。
