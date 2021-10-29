@@ -31,13 +31,13 @@ Declare Instances
 **********************************************************************/
 Serial PC(USBTX, USBRX, 115200);
 //モータは第3引数の調節必要
-dc_motor_1 Motor1(PA_1, PC_6, 0);
-dc_motor_1 Motor2(PA_0, PB_1, 1); 
-dc_motor_1 Motor3(PA_10, PC_7, 1);
-DigitalOut cylinder1(PA_11);
-DigitalOut cylinder2(PB_4);
-ServoMotor servo1(PB_10, 0.0);
-ServoMotor servo2(PA_8, 0.0);
+dc_motor_1 Motor0(PA_1, PC_6, 0);
+dc_motor_1 Motor1(PA_0, PB_1, 1); 
+dc_motor_1 Motor2(PA_10, PC_7, 1);
+DigitalOut cylinder0(PA_11);
+DigitalOut cylinder1(PB_4);
+ServoMotor servo0(PB_10, 0.0);
+ServoMotor servo1(PA_8, 0.0);
 DigitalOut LED(PB_2);
 
 ros::Subscriber<std_msgs::Float32MultiArray> order_sub("firework", &firework_Callback);
@@ -66,13 +66,13 @@ int main(int argc, char **argv)
 
 inline void SetOrder()
 {
-  Motor1.drive(order_catch[0]);
-  Motor2.drive(order_catch[1]);
-  Motor3.drive(order_catch[2]);
-  cylinder1 = order_catch[3];
-  cylinder2 = order_catch[4];
-  servo1.rot(order_catch[5]);
-  servo2.rot(order_catch[6]);
+  Motor0.drive(order_catch[0]);
+  Motor1.drive(order_catch[1]);
+  Motor2.drive(order_catch[2]);
+  cylinder0 = order_catch[3];
+  cylinder1 = order_catch[4];
+  servo0.rot(order_catch[5]);
+  servo1.rot(order_catch[6]);
   LED = order_catch[7];
 }
 
