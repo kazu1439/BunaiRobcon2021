@@ -36,9 +36,10 @@ dc_motor_1 Motor1(PA_0, PB_1, 1);
 dc_motor_1 Motor2(PA_10, PC_7, 1);
 DigitalOut cylinder0(PA_11);
 DigitalOut cylinder1(PB_4);
-ServoMotor servo0(PB_10, 0.0);
-ServoMotor servo1(PA_8, 0.0);
+ServoMotor servo0(PC_8, 0.0);
+ServoMotor servo1(PB_7, 0.0);
 DigitalOut LED(PB_2);
+
 
 ros::Subscriber<std_msgs::Float32MultiArray> order_sub("firework", &firework_Callback);
 ros::Subscriber<std_msgs::Float32MultiArray> sub_retrieve_launch("robo_retrieve_launch", &retrieve_launch_cb);
