@@ -1,5 +1,5 @@
 <launch>
-  <node name="robo2_test_actionmodel" pkg="robot2" type="robo2_test_actionmodel"/>
+  <node name="robo2_actionmodel" pkg="robot2" type="robo2_actionmodel"/>
   <node name="rob2_firework" pkg="robot2" type="rob2_firework"/>
   <node name="robo2_joy" pkg="robot2" type="robo2_joy"/>
   <node name="robo2_pc" pkg="robot2" type="robo2_pc"/>

@@ -219,3 +219,6 @@ target_link_libraries(robo2_actionmodel ${catkin_LIBRARIES})
 
 add_executable(robo2_joy src/robo2_joy.cpp)
 target_link_libraries(robo2_joy ${catkin_LIBRARIES})
+
+add_executable(robo2_test_actionmodel src/robo2_test_actionmodel.cpp)
+target_link_libraries(robo2_test_actionmodel ${catkin_LIBRARIES})
