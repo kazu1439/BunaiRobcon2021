@@ -1,0 +1,17 @@
+<launch>
+    <node name="robo2_actionmodel" pkg="robot2" type="robo2_actionmodel"/>
+    <node name="rob2_firework" pkg="robot2" type="rob2_firework"/>
+    <node name="robo2_joy" pkg="robot2" type="robo2_joy"/>
+    <node name="robo2_pc" pkg="robot2" type="robo2_pc"/>
+    <node pkg="joy" type="joy_node" name="joy" respawn="true" >
+        <param name="dev" type="string" value="/dev/input/js2" />
+    </node>
+    <node name="mbed1" pkg="rosserial_python" type="serial_node.py" output="screen">
+        <param name="port" value="/dev/ttyACM0"/>
+    	<param name="baud" value="115200"/>
+    </node>
+    <node name="mbed2" pkg="rosserial_python" type="serial_node.py" output="screen">
+        <param name="port" value="/dev/ttyACM1"/>
+    	<param name="baud" value="115200"/>
+    </node>
+</launch>
