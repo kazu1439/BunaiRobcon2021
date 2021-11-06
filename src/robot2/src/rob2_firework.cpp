@@ -91,14 +91,14 @@ inline void joy_msg_Callback(const std_msgs::Int32MultiArray::ConstPtr &joy_msg)
 }
 
 inline void Servo(){//サーボモータ制御
-   if(servo_mech == true && Time < 10){
+   if(servo_mech == true && Time < 3){
       Time += CTRL_PERIOD;
       firework_msg.data[0] = 0.0;
    }
    else{
       servo_mech = false;
       Time = 0;
-      firework_msg.data[0] = 30.0;
+      firework_msg.data[0] = 60.0;
    }
 }
 
