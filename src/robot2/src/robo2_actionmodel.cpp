@@ -46,7 +46,7 @@ int main(int argc, char **argv)
       Eigen::Matrix<float, 3, 3> A;                     //運動モデルの行列式のやつ
       A << 1.0/2, -(ruto3/2),  l,
            1.0/2, ruto3/2,     l,
-           1,         0,     l;
+           1,         0,     l*(-1);
       Eigen::Matrix<float, 3, 1> result;
       result << 0,
       0,
